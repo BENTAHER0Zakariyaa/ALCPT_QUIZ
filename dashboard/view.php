@@ -15,8 +15,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="../public/lib/bootstrap.css?v=<? echo data()?>">
-        <link rel="stylesheet" href="../public/lib/bootstrap.js">
+    <link rel="stylesheet" href="../public/lib/bootstrap.css?v=<? echo data()?>">
+    <link rel="stylesheet" href="../public/lib/bootstrap.js">
     <title>ALCPT QUIZ - Dashboard</title>
   </head>
   <body>
@@ -29,8 +29,8 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-          <a class="nav-link active" aria-current="page" href="index.php">Home</a>
-          <a class="nav-link active" href="view.php">View</a>
+        <a class="nav-link active" href="index.php">Home</a>
+          <a class="nav-link active" aria-current="page" href="view.php">View</a>
           <a class="nav-link active" href="questions.php">Management</a>
           <a class="nav-link active" href="help.php">Help</a>
         </div>
@@ -39,7 +39,9 @@
   </nav>
 
     <div class="container pt-5"> 
-      <div class="text-center h1">WELCOME BACK</div>
+      <?php 
+          $q->getAllQuestionForAdmin()
+      ?>
     </div>
 
   </body>
