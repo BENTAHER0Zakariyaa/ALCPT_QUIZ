@@ -2,6 +2,7 @@
 
 namespace ALCPT_QUIZ;
 
+include __DIR__."/../classes/Database.php";
 include __DIR__."/../classes/User.php";
 
 Session::init();

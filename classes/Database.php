@@ -755,3 +755,4 @@ class Database
         return $datarow[$field];
     }
 }
+?>

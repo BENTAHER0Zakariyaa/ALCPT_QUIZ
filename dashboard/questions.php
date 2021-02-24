@@ -3,6 +3,7 @@
 namespace ALCPT_QUIZ;
 
 include __DIR__."/../inc/inside/header.php"; 
+include __DIR__."/../classes/Database.php";
 include __DIR__."/../classes/Session.php";
 include __DIR__."/../classes/Question.php";
 include __DIR__."/../classes/Test.php";
@@ -22,6 +23,7 @@ if(isset($_POST['add'])):
 
     $testId=@$_GET['testId'];
     $questionNumber=@$_POST['questionNumber'];
+    $questionType=@$_POST['questionType'];
     $correct=@$_POST['isCorrect'];
     $question=@$_POST['question'];
     $answerA=@$_POST['answerA'];
@@ -31,7 +33,7 @@ if(isset($_POST['add'])):
 
     $messge="";
 
-    if(empty($questionNumber) || empty($question) || empty($answerA) || empty($answerB) || empty($answerC) || empty($answerD) || empty($correct)):
+    if(empty($questionNumber) || empty($testId) || empty($questionType) || empty($answerA) || empty($answerB) || empty($answerC) || empty($answerD) || empty($correct)):
       
         $messge="<div class=\"alert alert-danger\" role=\"alert\">[ADD] : Fields must not be empty!</div>";
     
@@ -53,6 +55,7 @@ if(isset($_POST['update'])):
 
     $testId=@$_GET['testId'];
     $questionNumber=@$_POST['questionNumber'];
+    $questionType=@$_POST['questionType'];
     $correct=@$_POST['isCorrect'];
     $question=@$_POST['question'];
     $answerA=@$_POST['answerA'];
@@ -62,7 +65,7 @@ if(isset($_POST['update'])):
 
     $messge="";
 
-    if(empty($questionNumber) || empty($question) || empty($answerA) || empty($answerB) || empty($answerC) || empty($answerD) || empty($correct)):
+    if(empty($questionNumber) || empty($testId) || empty($questionType)  || empty($question) || empty($answerA) || empty($answerB) || empty($answerC) || empty($answerD) || empty($correct)):
       
         $messge="<div class=\"alert alert-danger\" role=\"alert\">[ADD] : Fields must not be empty!</div>";
     
@@ -96,13 +99,19 @@ endif;
                     <form action="" method="post" class="border border-primary mt-2 p-4">
                     
                     <!--  -->
-                    <select class="form-select form-select-lg mb-3" name="questionNumber" aria-label=".form-select-lg example">
+                    <select class="form-select form-select-lg mb-3" name="questionNumber" >
                         <option selected>Select question number</option>
                         <?php 
                             for($i=1; $i <= 100; $i++) { ?>
                                 <option value="<?= $i; ?>"> <?= $i; ?> </option>
                             <?php }
                         ?>
+                    </select>
+                    
+                    <select class="form-select form-select-lg mb-3" name="questionType" >
+                        <option selected>Select question type</option>
+                        <option value="listening">Listening</option>
+                        <option value="reading">Reading</option>
                     </select>
 
                     <!--  -->
