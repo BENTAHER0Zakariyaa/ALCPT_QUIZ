@@ -165,8 +165,8 @@ class Result
         $data = $this->db->query("SELECT tests.testName, candidats.candidatLastname, candidats.candidatFirstName, candidats.candidatMatricule, candidats.candidatService, candidats.candidatRank, candidats.candidatCountry, candidats.candidatListening, candidats.candidatReading
                                     FROM candidats
                                     INNER JOIN tests ON candidats.candidatTestId=tests.testId
-                                    ORDER BY candidats.candidatListening DESC, candidats.candidatReading DESC
-                                    WHERE candidats.candidatTestId = {$TestId}")->result();
+                                    WHERE candidats.candidatTestId = {$TestId}
+                                    ORDER BY candidats.candidatListening DESC, candidats.candidatReading DESC")->result();
                                     
         $this->html ='<!DOCTYPE html>
         <html lang="en">
