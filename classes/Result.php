@@ -39,8 +39,7 @@ class Result
             }
             </style>
         <tr>
-            <td colspan="2" style=min-width:50px>'.date("d-M-Y").'</td>
-            <td style=min-width:50px></td>
+            <td colspan="3" style="min-width:50px;text-align:left;">'.date("d-M-Y").'</td>
             <td style=min-width:50px></td>
             <td style=min-width:50px></td>
             <td style=min-width:50px></td>
@@ -186,8 +185,7 @@ class Result
             }
             </style>
             <tr>
-            <td colspan="2" style=min-width:50px>'.date("d-M-Y").'</td>
-            <td style=min-width:50px></td>
+            <td colspan="3" style="min-width:50px;text-align:left;">'.date("d-M-Y").'</td>
             <td style=min-width:50px></td>
             <td style=min-width:50px></td>
             <td style=min-width:50px></td>
