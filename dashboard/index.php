@@ -18,7 +18,7 @@ $Login = Session::getValue("login");
     <div class="p-5 content-dashboard">
         <div>
           <?php include __DIR__."/../inc/inside/nav.php"; ?>
-          <center class="wb"><h1 >WELCOME BACK :) </h1></center>
+          <center class="wb"></center>
         </div>
     </div>
 </div>

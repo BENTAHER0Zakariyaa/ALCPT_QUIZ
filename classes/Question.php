@@ -24,7 +24,7 @@ class Question
         $answerD=str_replace("'","\'",$data['answerD']);
         $questionType=@$data['questionType'];
 
-        if(!$this->isExisted($questionNumber)):
+        if(!$this->isExistedInTest($questionNumber,$testId)):
             $this->db->query("INSERT INTO questions (testId, questionNumber, question,questionType, answerA, answerB, answerC, answerD, correctAnswer) 
                         VALUES({$testId}, {$questionNumber},'{$question}','{$questionType}','{$answerA}','{$answerB}','{$answerC}','{$answerD}','{$correct}')");
             return true;
@@ -36,6 +36,10 @@ class Question
     public function isExisted(int $id)
     {
         return $this->db->query("SELECT * FROM questions WHERE questionId={$id}")->count() != 0;
+    }
+    public function isExistedInTest(int $questionNumber,int $testId)
+    {
+        return $this->db->query("SELECT * FROM questions WHERE questionNumber={$questionNumber} AND testId={$testId}")->count() != 0;
     }
     public function deleteQuestionById(int $id)
     {
@@ -85,7 +89,16 @@ class Question
 
     public function getAllQuestionsByTestIdAndType($testId,$questionType)
     {
-        return $this->db->query("SELECT * FROM questions WHERE testId = {$testId} AND questionType='{$questionType}'")->result();
+        return $this->db->query("SELECT * FROM questions WHERE testId = {$testId} AND questionType='{$questionType}' ORDER BY questionNumber ASC")->result();
+    }
+    public function getQuestionsByTestIdAndNumber($testId,$questionNumber)
+    {
+        if($this->isExistedInTest($testId,$questionNumber)):
+            
+            return $this->db->query("SELECT * FROM questions WHERE testId = {$testId} AND questionNumber={$questionNumber}")->result()[0];
+        else :
+            return "";
+        endif;
     }
 
     public function getCount($testId)

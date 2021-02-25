@@ -27,3 +27,14 @@
 *{
     font-family: Arial, Helvetica, sans-serif;
 }
+.by{
+    height: 100vh;
+    width: 100%;
+    .by-content{
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+}

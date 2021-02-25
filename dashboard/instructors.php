@@ -67,21 +67,23 @@ endif;
               <form action="" method="post" class="border border-primary p-4">
                 <div class="mb-3">
                   <label for="instructorName" class="form-label">Instructor Name : </label>
-                  <input name="instructorName" type="text" class="form-control" id="IdInstructorName">
+                  <input value="<?= isset($_POST['add'])?@$instructorName:"" ?>" name="instructorName" type="text" class="form-control" id="IdInstructorName">
                 </div>
                 <select class="form-select form-select-lg mb-3" name="instructorRank" aria-label=".form-select-lg example">
-                  <option selected>Select rank</option>
-                  <option value="ESO">ESO</option>
-                  <option value="sergent">sergent</option>
-                  <option value="colonel">colonel</option>
-                  <option value="adjudant">adjudant</option>
-                  <option value="capitaine">capitaine</option>
-                  <option value="lieutenant">lieutenant</option>
-                  <option value="commandant">commandant</option>
-                  <option value="sergent-chef">sergent-chef</option>
-                  <option value="adjudant-chef">adjudant-chef</option>
-                  <option value="sous-lieutenant">sous-lieutenant</option>
-                  <option value="lieutenant-colonel">lieutenant-colonel</option>
+                  <option <?= isset($_POST['add']) && isset($instructorRank) && $instructorRank=="" ?"selected":"" ?> value="" >Select your rank</option>
+                  <option <?= isset($_POST['add']) && isset($instructorRank) && $instructorRank=="eleve sous-officier" ?"selected":"" ?> value="eleve sous-officier">Eleve sous-officier</option> 
+                  <option <?= isset($_POST['add']) && isset($instructorRank) && $instructorRank=="eleve officier" ?"selected":"" ?> value="eleve officier">Eleve officier</option> 
+                  <option <?= isset($_POST['add']) && isset($instructorRank) && $instructorRank=="sergent" ?"selected":"" ?> value="sergent">Sergent</option> 
+                  <option <?= isset($_POST['add']) && isset($instructorRank) && $instructorRank=="sergent-chef" ?"selected":"" ?> value="sergent-chef">Sergent-chef</option> 
+                  <option <?= isset($_POST['add']) && isset($instructorRank) && $instructorRank=="adjudant" ?"selected":"" ?> value="adjudant">Adjudant </option> 
+                  <option <?= isset($_POST['add']) && isset($instructorRank) && $instructorRank=="adjudant" ?"selected":"" ?> value="adjudant-chef">Adjudant-chef</option> 
+                  <option <?= isset($_POST['add']) && isset($instructorRank) && $instructorRank=="sous-lieutenant" ?"selected":"" ?> value="sous-lieutenant">Sous-lieutenant</option> 
+                  <option <?= isset($_POST['add']) && isset($instructorRank) && $instructorRank=="lieutenant" ?"selected":"" ?> value="lieutenant">Lieutenant</option> 
+                  <option <?= isset($_POST['add']) && isset($instructorRank) && $instructorRank=="capitaine" ?"selected":"" ?> value="capitaine">Capitaine</option> 
+                  <option <?= isset($_POST['add']) && isset($instructorRank) && $instructorRank=="commandant" ?"selected":"" ?> value="commandant">Commandant</option> 
+                  <option <?= isset($_POST['add']) && isset($instructorRank) && $instructorRank=="lieutenant-colonel" ?"selected":"" ?> value="lieutenant-colonel">Lieutenant-colonel</option>  
+                  <option <?= isset($_POST['add']) && isset($instructorRank) && $instructorRank=="colonel" ?"selected":"" ?> value="colonel">Colonel</option> 
+                  <option <?= isset($_POST['add']) && isset($instructorRank) && $instructorRank=="colonel major" ?"selected":"" ?> value="colonel major">Colonel major</option> 
                 </select>
                 <input name="add" id="IdAdd" value="Add" type="submit" class="btn btn-primary" >
               </form>
@@ -89,27 +91,29 @@ endif;
               <form action="" method="post" class="border border-primary mt-2 p-4">
 
               <select class="form-select form-select-lg mb-3" name="instructorId" aria-label=".form-select-lg example">
-                  <option selected>Select id to modify</option>
+                  <option value="" selected >Select id to modify</option>
                   <?= $i->DisplayOptions();?>
                 </select>
 
                 <div class="mb-3">
                   <label for="instructorName" class="form-label">Instructor Name : </label>
-                  <input name="instructorName" type="text" class="form-control" id="IdInstructorName">
+                  <input value="<?= isset($_POST['update'])?@$instructorName:"" ?>" name="instructorName" type="text" class="form-control" id="IdInstructorName">
                 </div>
                 <select class="form-select form-select-lg mb-3" name="instructorRank" aria-label=".form-select-lg example">
-                  <option selected>Select rank</option>
-                  <option value="ESO">ESO</option>
-                  <option value="sergent">sergent</option>
-                  <option value="colonel">colonel</option>
-                  <option value="adjudant">adjudant</option>
-                  <option value="capitaine">capitaine</option>
-                  <option value="lieutenant">lieutenant</option>
-                  <option value="commandant">commandant</option>
-                  <option value="sergent-chef">sergent-chef</option>
-                  <option value="adjudant-chef">adjudant-chef</option>
-                  <option value="sous-lieutenant">sous-lieutenant</option>
-                  <option value="lieutenant-colonel">lieutenant-colonel</option>
+                  <option <?= isset($_POST['update']) && isset($instructorRank) && $instructorRank=="" ?"selected":"" ?> value="" >Select your rank</option>
+                  <option <?= isset($_POST['update']) && isset($instructorRank) && $instructorRank=="eleve sous-officier" ?"selected":"" ?> value="eleve sous-officier">Eleve sous-officier</option> 
+                  <option <?= isset($_POST['update']) && isset($instructorRank) && $instructorRank=="eleve officier" ?"selected":"" ?> value="eleve officier">Eleve officier</option> 
+                  <option <?= isset($_POST['update']) && isset($instructorRank) && $instructorRank=="sergent" ?"selected":"" ?> value="sergent">Sergent</option> 
+                  <option <?= isset($_POST['update']) && isset($instructorRank) && $instructorRank=="sergent-chef" ?"selected":"" ?> value="sergent-chef">Sergent-chef</option> 
+                  <option <?= isset($_POST['update']) && isset($instructorRank) && $instructorRank=="adjudant" ?"selected":"" ?> value="adjudant">Adjudant </option> 
+                  <option <?= isset($_POST['update']) && isset($instructorRank) && $instructorRank=="adjudant" ?"selected":"" ?> value="adjudant-chef">Adjudant-chef</option> 
+                  <option <?= isset($_POST['update']) && isset($instructorRank) && $instructorRank=="sous-lieutenant" ?"selected":"" ?> value="sous-lieutenant">Sous-lieutenant</option> 
+                  <option <?= isset($_POST['update']) && isset($instructorRank) && $instructorRank=="lieutenant" ?"selected":"" ?> value="lieutenant">Lieutenant</option> 
+                  <option <?= isset($_POST['update']) && isset($instructorRank) && $instructorRank=="capitaine" ?"selected":"" ?> value="capitaine">Capitaine</option> 
+                  <option <?= isset($_POST['update']) && isset($instructorRank) && $instructorRank=="commandant" ?"selected":"" ?> value="commandant">Commandant</option> 
+                  <option <?= isset($_POST['update']) && isset($instructorRank) && $instructorRank=="lieutenant-colonel" ?"selected":"" ?> value="lieutenant-colonel">Lieutenant-colonel</option>  
+                  <option <?= isset($_POST['update']) && isset($instructorRank) && $instructorRank=="colonel" ?"selected":"" ?> value="colonel">Colonel</option> 
+                  <option <?= isset($_POST['update']) && isset($instructorRank) && $instructorRank=="colonel major" ?"selected":"" ?> value="colonel major">Colonel major</option> 
                 </select>
                 <input name="update" id="IdUpdate" value="Update" type="submit" class="btn btn-primary" >
               </form>

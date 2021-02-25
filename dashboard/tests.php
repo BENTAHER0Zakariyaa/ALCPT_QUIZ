@@ -17,7 +17,7 @@ endif;
 
 
 $t = new Test();
-$messge="";
+$messge = "";
 $path="";
 
 if(isset($_POST['add'])):
@@ -35,13 +35,15 @@ if(isset($_POST['add'])):
 endif;
 
 if(isset($_POST['update'])):
-  if(!empty($_FILES['fileName']['name'])):
-    $path="audios/{$_FILES['fileName']['name']}";
-    move_uploaded_file($_FILES['fileName']['tmp_name'], $path);
-  else:
-    $path="";
-  endif;
-  if(empty($_POST['testName'])):
+    if(!empty($_FILES['fileName']['name'])):
+      $path="audios/{$_FILES['fileName']['name']}";
+      move_uploaded_file($_FILES['fileName']['tmp_name'], $path);
+    else:
+      $path="";
+    endif;
+  if(empty($_POST['testId'])):
+    $messge="<div class=\"alert alert-danger\" role=\"alert\"><b>ERROR</b> : Select test id to modify!</div>";
+    elseif(empty($_POST['testName'])):
     $messge="<div class=\"alert alert-danger\" role=\"alert\"><b>ERROR</b> : Test name field must not be empty to modify!</div>";
   else:
     $t->UpdateTestById($_POST,$path);
@@ -80,7 +82,7 @@ endif;
               <br>
               <form id="IdUpdateForm" action="" method="post" class="border border-primary p-4"  enctype="multipart/form-data">
                 <select class="form-select form-select-lg mb-3" name="testId" aria-label=".form-select-lg example">
-                  <option selected>select id to modify</option>
+                  <option selected value="" >select id to modify</option>
                   <?= $t->DisplayOptions() ?>
                 </select>
                 <div class="mb-3">

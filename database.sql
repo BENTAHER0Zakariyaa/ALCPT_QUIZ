@@ -59,6 +59,8 @@ CREATE TABLE users(
     -- CONSTRAINT
     CONSTRAINT PK_userId PRIMARY KEY (userId)
 );
+INSERT INTO users (userName, userPassword) VALUES
+('admin', '$2y$10$bggvAwQiCtqtRM.G87SZPOjFUhC6qOSUjvybpxl6Dr2VYrfTT5oYO');
 
 
 CREATE TABLE candidats(
@@ -68,36 +70,21 @@ CREATE TABLE candidats(
 
     -- FOREIGN KEY
     candidatTestId INT NOT NULL,
-
+   
     -- COLUMNS
     candidatLastname VARCHAR(150) NOT NULL,
-    candidatFistname VARCHAR(150) NOT NULL,
+    candidatFirstName VARCHAR(150) NOT NULL,
     candidatMatricule VARCHAR(150) NOT NULL,
     candidatService VARCHAR(150) NOT NULL,
     candidatRank VARCHAR(150) NOT NULL,
     candidatCountry VARCHAR(150) NOT NULL,
     candidatInstructorName VARCHAR(150) NOT NULL,
+    
+    candidatListening int,
+    candidatReading int,
 
     -- CONSTRAINT
+    CONSTRAINT FK_testId FOREIGN KEY (candidatTestId) REFERENCES tests(testId),
     CONSTRAINT PK_candidatId PRIMARY KEY (candidatId)
-);
-
-
-CREATE TABLE scores
-(
-    -- PRIMARY KEY
-    scoreId INT NOT NULL AUTO_INCREMENT,
-
-    -- FOREIGN KEY
-    testId INT NOT NULL,
-    candidatId INT NOT NULL,
-
-    -- COLUMNS
-    listening int,
-    reading int,
-
-    -- CONSTRAINT
-    CONSTRAINT FK_testId FOREIGN KEY (testId) REFERENCES tests(testId),
-    CONSTRAINT PK_scoreId PRIMARY KEY (scoreId)    
 );
 

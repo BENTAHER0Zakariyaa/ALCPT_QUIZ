@@ -8,31 +8,30 @@ namespace ALCPT_QUIZ;
   include __DIR__."./classes/Test.php";
   include __DIR__."./classes/Answer.php";
   include __DIR__."./classes/Instructor.php";
+  include __DIR__."./classes/Cookie.php";
 
-  if (isset($_GET['testId']) && !empty(isset($_GET['testId'])) && isset($_GET['studentId']) && !empty(isset($_GET['studentId']))) :
-      
-  $testId=$_GET['testId']; 
-  $studentId=$_GET['studentId']; 
-  $s=new Student();
-  $t=new Test();
-  $q=new Question();
-  $a=new Answer();
-  $i=new Instructor();
-  $messge="";
+  $s = new Student();
+  $t = new Test();
+  $q = new Question();
+  $a = new Answer();
+  $i = new Instructor();
 
-  if(isset($_POST['end'])):
-        unset($_POST['end']);
-        // echo "<pre>";
-        // print_r($_POST);
-        // echo "</pre>";
+  $testId = Cookie::getCookie("testId"); 
+  $studentId = Cookie::getCookie("studentId"); 
+
+if (!empty($testId) && !empty($studentId) && isset($_COOKIE['testId']) && isset($_COOKIE['studentId'])) :
+        
+
+    $messge = "";
+
+    if(isset($_POST['end'])):
+        unset($_POST['end']); 
+        //Cookie::setCookie("passed",true,60*30); 
         $a->addAnswers($_POST,$testId,$studentId);
-        header("Location:endOfTheTest.php");
-  endif;
-  else : 
+    endif;
+else:
     header("Location:studentInfo.php");
-  endif;
-
-
+endif;
   ?>
 
 
@@ -50,6 +49,7 @@ namespace ALCPT_QUIZ;
     <title>ALCPT QUIZ</title>
   </head>
   <body>
+
     <audio autoplay>
         <source src="./dashboard/<?=$t->getTestAudio($testId) ;?>" type="audio/mpeg">
         <source src="./dashboard/<?=$t->getTestAudio($testId) ;?>" type="audio/mp3">
@@ -89,39 +89,40 @@ namespace ALCPT_QUIZ;
                 <h2>Part I - Listening : </h2>
           <?php
             $questions = $q->getAllQuestionsByTestIdAndType($testId,"listening");
+            $int=1;
             foreach ($questions as $key => $question) { ?>
                 <div class="card mb-2">
                     <div class="card-body">
-                        <h3 class="card-title"><?= $question->questionNumber ;?>. 
+                        <h3 class="card-title"><?= $int++ ;?>. 
                         <?php
-                            $dashes=str_replace("\_","__________",$question->question);
+                            $dashes=str_replace("/_","__________",$question->question);
                             $backlane=str_replace("\n","<br>",$dashes);
                             echo $backlane;
                          ?></h3>
                         <p class="card-text">
-                        <div class="form-check">
-                        A) 
+                        <div class="form-check h4">
+                        a-&nbsp;&nbsp;&nbsp;
                             <input name="<?= $question->questionNumber ;?>" value="<?= $question->questionId;?>:A" class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
                             <label class="form-check-label" for="flexRadioDefault1">
                             <?= $question->answerA ;?>
                             </label>
                         </div>
-                        <div class="form-check">
-                        B) 
+                        <div class="form-check h4">
+                        b-&nbsp;&nbsp;&nbsp;
                             <input name="<?= $question->questionNumber ;?>" value="<?= $question->questionId;?>:B" class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
                             <label class="form-check-label" for="flexRadioDefault1">
                             <?= $question->answerB ;?>
                             </label>
                         </div>
-                        <div class="form-check">
-                        C) 
+                        <div class="form-check h4">
+                        c-&nbsp;&nbsp;&nbsp;
                             <input name="<?= $question->questionNumber ;?>" value="<?= $question->questionId;?>:C" class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
                             <label class="form-check-label" for="flexRadioDefault1">
                             <?= $question->answerC ;?>
                             </label>
                         </div>
-                        <div class="form-check">
-                        D) 
+                        <div class="form-check h4">
+                        d-&nbsp;&nbsp;&nbsp;
                             <input name="<?= $question->questionNumber ;?>" value="<?= $question->questionId;?>:D" class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
                             <label class="form-check-label" for="flexRadioDefault1">
                             <?= $question->answerD ;?>
@@ -139,36 +140,36 @@ namespace ALCPT_QUIZ;
             foreach ($questions as $key => $question) { ?>
                 <div class="card mb-2">
                     <div class="card-body">
-                        <h3 class="card-title"><?= $question->questionNumber ;?>. 
+                        <h3 class="card-title"><?= $int++ ;?>. 
                         <?php
-                            $dashes=str_replace("\_","__________",$question->question);
+                            $dashes=str_replace("/_","__________",$question->question);
                             $backlane=str_replace("\n","<br>",$dashes);
                             echo $backlane;
                          ?></h3>
                         <p class="card-text">
-                        <div class="form-check">
-                        A) 
+                        <div class="form-check h4">
+                        a-&nbsp;&nbsp;&nbsp;
                             <input name="<?= $question->questionNumber ;?>" value="<?= $question->questionId;?>:A" class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
                             <label class="form-check-label" for="flexRadioDefault1">
                             <?= $question->answerA ;?>
                             </label>
                         </div>
-                        <div class="form-check">
-                        B) 
+                        <div class="form-check h4">
+                        b-&nbsp;&nbsp;&nbsp; 
                             <input name="<?= $question->questionNumber ;?>" value="<?= $question->questionId;?>:B" class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
                             <label class="form-check-label" for="flexRadioDefault1">
                             <?= $question->answerB ;?>
                             </label>
                         </div>
-                        <div class="form-check">
-                        C) 
+                        <div class="form-check h4">
+                        c-&nbsp;&nbsp;&nbsp; 
                             <input name="<?= $question->questionNumber ;?>" value="<?= $question->questionId;?>:C" class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
                             <label class="form-check-label" for="flexRadioDefault1">
                             <?= $question->answerC ;?>
                             </label>
                         </div>
-                        <div class="form-check">
-                        D) 
+                        <div class="form-check h4">
+                        d-&nbsp;&nbsp;&nbsp;
                             <input name="<?= $question->questionNumber ;?>" value="<?= $question->questionId;?>:D" class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
                             <label class="form-check-label" for="flexRadioDefault1">
                             <?= $question->answerD ;?>

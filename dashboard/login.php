@@ -41,6 +41,7 @@ endif;
     <div class="content">
         <h1 ><span class="badge bg-primary">Administrator</span></h1>
         <form class="p-4 border border-primary rounded" action="" method="POST">
+          <a href="../index.php" class="btn btn-primary mb-3">Back</a>
             <div class="mb-3">
                 <label for="userName" class="form-label">User name : </label>
                 <input name="userName" id="IdUserName" type="text" class="form-control">
