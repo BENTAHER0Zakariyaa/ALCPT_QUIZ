@@ -21,9 +21,6 @@ class Test
                 <td scope="row"><?= $test->testId ?></td>
                 <td><?= $test->testName ?></td>
                 <td><?= $test->testAudio ?></td>
-                <td class="text-center">
-                    <a href="deleteTest.php?id=<?= $test->testId ?>" class="btn btn-danger btn-sm">Delete</a>
-                </td>
             </tr>
         <?php }
     }
@@ -57,12 +54,12 @@ class Test
         $testName = $data["testName"];
         $this->db->query("INSERT INTO tests (testName,testAudio) VALUES ('{$testName}','{$fileName}')");
     }
-    public function DeleteTestById(int $id)
-    {
-        $this->db->query("DELETE FROM questions WHERE testId={$id}");
-        $this->db->query("DELETE FROM scores WHERE testId={$id}"); 
-        $this->db->query("DELETE FROM tests WHERE testId={$id}");
-    }
+    // public function DeleteTestById(int $id)
+    // {
+    //     $this->db->query("DELETE FROM questions WHERE testId={$id}");
+    //     $this->db->query("DELETE FROM scores WHERE testId={$id}"); 
+    //     $this->db->query("DELETE FROM tests WHERE testId={$id}");
+    // }
     public function UpdateTestById(array $data, $fileName)
     {
         $testName = $data["testName"];

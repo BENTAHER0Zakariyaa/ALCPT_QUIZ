@@ -103,9 +103,8 @@ endif;
                 <thead>
                   <tr>
                     <th>Id</th>
-                    <th>Tests</th>
+                    <th>Name</th>
                     <th>Audio</th>
-                    <th></th>
                   </tr>
                 </thead>
                 <tbody>
