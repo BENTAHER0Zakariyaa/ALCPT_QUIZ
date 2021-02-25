@@ -37,9 +37,8 @@ class Question
     {
         return $this->db->query("SELECT * FROM questions WHERE questionId={$id}")->count() != 0;
     }
-    public function isExistedInTest(int $questionNumber,int $testId)
+    public function isExistedInTest(int $testId,int $questionNumber)
     {
-        echo "{$questionNumber} : {$testId} <br>";
         return $this->db->query("SELECT * FROM questions WHERE questionNumber={$questionNumber} AND testId={$testId}")->count() != 0;
     }
     public function deleteQuestionById(int $id)
